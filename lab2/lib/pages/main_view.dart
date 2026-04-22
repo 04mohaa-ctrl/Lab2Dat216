@@ -4,13 +4,23 @@ import '../widgets/kitchen_control.dart';
 import '../widgets/difficulty_control.dart';
 import '../widgets/price_control.dart';
 import '../widgets/recipe_list.dart';
+import '../widgets/time_controll.dart';
+import '../widgets/recipe_area.dart';
+
+
+
 class MainView extends StatelessWidget {
   const MainView({super.key});
 
 @override
 Widget build(BuildContext context) {
    return Scaffold(
-     body: Row(children: [_controlPanel(context), _recipeArea(context)]),
+     body: Row(
+      children: [
+        _controlPanel(context), 
+        const RecipeArea(),
+        ]
+      ),
    );
 }
 
@@ -44,33 +54,23 @@ Widget _controlPanel(context, {double width = 335}) {
             KitchenControl(),
           ],
         ),
+        
+
         const SizedBox(height: 16),
+        const Text('Svårighetsgrad'),
+        DifficultyControl(),
 
-const Text('Svårighetsgrad'),
+        const SizedBox(height: 16),
+        const Text('Maxpris'),
+        PriceControl(),
 
-DifficultyControl(),
-const SizedBox(height: 16),
-
-const Text('Maxpris'),
-
-PriceControl(),
-
-const SizedBox(height: 16),
-
-const Text('Tillagningstid'),
-
-PriceControl(),
-      ],
-    ),
-  );
-}
-
-Widget _recipeArea(context) {
-  return Expanded(
-    child: Container(
-      //color: const Color.fromARGB(255, 204, 216, 176),
-      child: RecipeList(),
-    ),
- );
-}
+        const SizedBox(height: 16),
+        const Text('Tillagningstid'),
+        TimeControl(),
+      
+      
+        ],
+      ),
+    );
+  }
 }
